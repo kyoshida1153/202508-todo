@@ -1,3 +1,5 @@
+import type { TodoStatusName } from "./TodoStatusName";
+
 export type Todo = {
   readonly id: string;
   title: string;

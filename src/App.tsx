@@ -82,7 +82,7 @@ function App() {
     setAddTodo({ title: "", detail: "" });
 
     // ★
-    e.target.reset();
+    // e.target.reset();
   };
 
   /* ###################################################################### */
@@ -176,7 +176,6 @@ function App() {
   const handleFilterStatus = (
     e: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    console.log(e.target.value);
     setFilterStatus(e.target.value);
   };
 
