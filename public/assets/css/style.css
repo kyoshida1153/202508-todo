@@ -1,0 +1,310 @@
+@charset "UTF-8";
+
+:root {
+  --rootFontColor: #333;
+  --rootFontSize: 16px;
+  --rootContentWidthMax: 768px;
+
+  color: var(--rootFontColor);
+}
+
+body {
+  margin: 0;
+}
+
+/* ###################################################################### */
+
+.header {
+  width: 100%;
+  border-bottom: solid 1px hsl(0deg 0% 90%);
+}
+
+.header__heading {
+  font-size: calc(var(--rootFontSize) * 1.5);
+  margin: 0 auto;
+  padding: 0.5em 1em;
+  max-width: var(--rootContentWidthMax);
+  font-weight: normal;
+}
+
+/* ###################################################################### */
+
+.todo {
+  font-size: var(--rootFontSize);
+}
+
+.todo__inner {
+  margin: 0 auto;
+  padding: 2em 1em;
+  max-width: var(--rootContentWidthMax);
+  display: flex;
+  flex-direction: column;
+}
+
+.todo__addFormArea {
+}
+
+.todo__listArea {
+  margin-top: 1em;
+}
+
+.todo_filterArea {
+  margin-top: 2em;
+}
+
+/* ###################################################################### */
+
+.todoAddForm {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: hsl(0, 0%, 99%);
+  border-radius: 0.5em;
+  border: solid 1px hsl(0deg 0% 90%);
+}
+
+.todoAddForm__itemArea {
+  display: flex;
+  gap: 0.3em;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.todoAddForm__label {
+  font-size: var(--rootFontSize);
+}
+
+.todoAddForm__label::after {
+  content: "：";
+  display: inline-block;
+}
+
+.todoAddForm__title {
+}
+
+.todoAddForm__detail {
+  height: calc(var(--rootFontSize) * 4);
+}
+
+.todoAddForm__submitArea {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todoAddForm__submit {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 1em;
+  border: none;
+  padding: 0.25em 1.3em;
+  font-size: calc(1em * 1);
+  background-color: #53adea;
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .todoAddForm__submit:hover {
+    opacity: 0.7;
+  }
+}
+
+@media (hover: hover) and (pointer: coarse), (hover: none) {
+  .todoAddForm__submit:active {
+    opacity: 0.7;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .todoAddForm {
+    padding: 2em;
+    gap: 0.5em;
+  }
+
+  .todoAddForm__itemArea {
+    display: grid;
+    grid-template: 100% / 5em 1fr;
+    gap: 0.5em;
+    align-items: baseline;
+  }
+}
+
+/* ###################################################################### */
+
+.todoFilter {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  /* background-color: hsl(0, 0%, 99%); */
+  /* border-radius: 0.5em; */
+  border-top: solid 1px hsl(0deg 0% 90%);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.todoFilter::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.todoFilter::-webkit-scrollbar-thumb {
+  background-color: hsl(0deg 0% 60%);
+  border-radius: 6px;
+}
+
+.todoFilter::-webkit-scrollbar-track {
+  background-color: hsl(0 0% 95%);
+}
+
+.todoFilter__heading {
+  font-size: var(--rootFontSize);
+  font-weight: bold;
+  margin: 0;
+}
+
+.todoFilter__id {
+  padding: 0.2em 0;
+}
+
+.todoFilter__item {
+  display: flex;
+  gap: 0;
+  max-width: fit-content;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.todoFilter__label {
+  font-size: var(--rootFontSize);
+}
+
+.todoFilter__label::after {
+  content: "：";
+  display: inline-block;
+}
+
+.todoFilter__status {
+  font-size: calc(1em * 0.9);
+  padding: 0.2em 0;
+}
+
+@media screen and (min-width: 768px) {
+  .todoFilter {
+    padding: 1em 1em;
+  }
+}
+
+/* ###################################################################### */
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 0;
+}
+
+.todoListItem {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  /* gap: 1em; */
+  border-radius: 0.5em;
+  background-color: hsl(0, 0%, 99%);
+  border: solid 1px hsl(0deg 0% 90%);
+}
+
+.todoListItem[data-status="notStarted"] {
+  border: solid 1px lightgray;
+  background-color: hsl(0 0% 95% / 1);
+}
+
+.todoListItem[data-status="start"] {
+  border: solid 1px lightblue;
+  background-color: hsl(195 53% 95% / 1);
+}
+
+.todoListItem[data-status="done"] {
+  border: solid 1px lightgreen;
+  background-color: hsl(120 73% 95% / 1);
+}
+
+.todoListItem__detail {
+  font-size: calc(1em * 1);
+  margin-top: 0.5em;
+}
+
+.todoListItem__detail_edit {
+  height: calc(var(--rootFontSize) * 4);
+}
+
+.todoListItem__handleArea {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+  flex-wrap: nowrap;
+}
+
+.todoListItem__handleArea {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.todoListItem__status {
+  font-size: calc(1em * 0.9);
+  padding: 0.2em 0;
+}
+
+.todoListItem__title {
+  font-size: calc(1em * 1.2);
+}
+
+.todoListItem__operateArea {
+  display: grid;
+  grid-template: 100% / repeat(2, calc(50% - 0.5em));
+  gap: 1em;
+  margin-top: 1.5em;
+}
+
+.todoListItem__button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .todoListItem__button:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (hover: hover) and (pointer: coarse), (hover: none) {
+  .todoListItem__button:active {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .todoListItem {
+    padding: 2em;
+  }
+
+  .todoListItem__operateArea {
+    grid-template: 100% / repeat(2, calc(50% - 1em));
+    gap: 2em;
+  }
+  .todoList {
+    padding: 0 1em;
+  }
+}
